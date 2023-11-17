@@ -42,6 +42,41 @@ What SEScore2 does is generate incorrect samples by sampling from the k nearest 
 
 The authors conduct several experiments to demonstrate the the superior performance and generalizability of the SEScore2 metric across various domains and text generation tasks. More specifically, they assess the metric by i) validating the trained SEScore2 checkpoint scores over a range of Natural Language Generation (NLG) tasks such as Machine Translation, Speech Translation, Data-to-Text, and Dialogue Generation; ii) testing over multiple non-English to English translations, iii) testing over two WMT domains – News and TED, and iv) performing a comprehensive set of evaluations to gather a more nuanced understanding of the metric’s performance over different dimensions. For the text generation tasks, the SEScore2 metric is compared with n-gram and distance-based metrics such as BLEU, ChrF and TER, unsupervised learned metrics such as PRISM, SEScore, BARTScore and BERTScore, and the best performing metrics learned in a supervised manner such as COMET and BLEURT (CITE ALL). Evaluation is done by computing how correlated the metric output scores are to human scores on the same input.
 
+![image2](./translation_evaluation_metrics_per_task.png)
 
-Overall Performance Comparison
+Refer to the above figure for all the following demonstrations of the effectiveness of SEScore2.
+
+## Overall Performance Comparison
+
+The figure above shows the overall performance across a range of NLG tasks described above. SEScore2 is shown to have superior performance compared to the best rule based metric ChrF by a correlation score improvement of 0.145, and the top unsupervised metrics, including PRISM, by a margin of 0.078 in terms of Kendall correlation​​. Even more notable is that SEScore2 is demonstrated to be better than the supervised BLEURT on two out of four NLG tasks.
+
+
+## Performance across NLG tasks
+
+SEScore2 is compared with the baselines on various tasks, including machine translation (MT), data-to-text (D2T), and dialogue generation. The following are some specific observation that can be drawn from table/figure. 
+- In all three language directions tested (English-German, German-English, and Chinese-English), SEScore2 consistently outperformed unsupervised metrics and even excelled over supervised metrics COMET and BLEURT in Chinese-English translations​​.
+- SEScore2 led the field in speech translation, notably outperforming all metrics, including COMET. 
+- SEScore2 also excelled in data-to-text and dialogue generation tasks, surpassing both supervised and unsupervised metrics​​.
+These results clearly illustrate SEScore2's versatility and effectiveness across different text generation tasks​​.
+
+## Diverse Domains and Languages
+
+In addition to excelling in various text generation tasks, SEScore2 also demonstrates remarkable consistency in translation tasks into the same target languages. Specifically, in machine translation tasks like Chinese to English and German to English, SEScore2 outshines all unsupervised metrics and surpasses supervised metrics BLEURT and COMET in Chinese to English. Although slightly behind BLEURT in German to English, it remains competitive with COMET.
+
+The authors evaluate the impact of domain shift on the metric performance with a focus on the News and TED WMT domains. While all metrics trained on News show a decline in performance in the TED domain, known for its informal and disfluent language styles, SEScore2 exhibits the least decline among learned metrics. This resilience to domain shifts, coupled with its ability to remain consistent across many to same-language translation tasks highlights SEScore2's adaptability and robustness across varied domains and languages.
+
+## Evaluating SEScore2 reveals its strengths across multiple dimensions:
+
+- Data Scaling: Even with 1 million data points, SEScore2 shows notable improvements, indicating efficiency in training and adaptability to general domains.
+- Fine-tuning Risks: Contrary to expectations, fine-tuning SEScore2 on specific domains may hinder its generalizability.
+- Retrieval Augmented Synthesis vs. Random Sampling: The former significantly enhances SEScore2's effectiveness over the latter.
+- Ablation on RA Operations: Insert/replace operations are crucial for creating realistic synthetic sentences and boosting performance.
+- Effects of Severity Measures: Both IDF and XLM-based measures substantially improve SEScore2's performance, showcasing their importance in accuracy enhancement across domains.
+
+## Interpreting SEScore2:
+
+SEScore2 excels in multi-dimensional evaluations of text generation. In benchmarks like WebNLG and BAGEL, it achieves the highest Kendall correlation in various aspects, notably fluency, text structure, naturalness, and overall quality, surpassing BLEURT significantly. This indicates that while SEScore2 provides an overall score, it is particularly effective in assessing quality and fluency aspects.
+
+
+
 
