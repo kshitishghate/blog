@@ -75,7 +75,7 @@ The authors evaluate the impact of domain shift on the metric performance with a
 
 ## Interpreting SEScore2:
 
-![image3](./multidimensional.png)
+![image3](./Multidimensional.png)
 
 SEScore2 excels in multi-dimensional evaluations of text generation. In benchmarks like WebNLG and BAGEL, it achieves the highest Kendall correlation in various aspects, notably fluency, text structure, naturalness, and overall quality, surpassing BLEURT significantly. This indicates that while SEScore2 provides an overall score, it is particularly effective in assessing quality and fluency aspects.
 
