@@ -22,11 +22,11 @@ Github: <https://github.com/xu1998hz/SEScore2>
 
 ## Why A New Evaluation Metric?
 
-Traditionally, models are evaluated using untrained n-gram techniques, or techniques that count the number of overlapping character (or word) sequences between two samples. A popular example of this is BLEU scores, a.k.a. Bilingual Evaluation Understudy score, which calculates the percentage of overlapping subsequences of varying lengths and averages the result to provide an outcome. This technique has two primary disadvantages, despite its ease of implementation: it cannot disambiguate between different degrees of “incorrectness” and it is not necessarily highly correlated with human ratings, especially as models become better-performing.
+Traditionally, models are evaluated using untrained n-gram techniques, or techniques that count the number of overlapping character (or word) sequences between two samples. A popular example of this is BLEU[2] scores, a.k.a. Bilingual Evaluation Understudy score, which calculates the percentage of overlapping subsequences of varying lengths and averages the result to provide an outcome. This technique has two primary disadvantages, despite its ease of implementation: it cannot disambiguate between different degrees of “incorrectness” and it is not necessarily highly correlated with human ratings, especially as models become better-performing.
 
-Newer techniques involve using trained metrics, such as **BLEURT** and **COMET**. Both of these metrics are trained on human judgements and rely on large pre-trained models, which is not necessarily available for all languages and domains. While these do outperform more traditional techniques with regards to human annotator correlation, they are still limited by their need to collected training data.
+Newer techniques involve using trained metrics, such as **BLEURT**[3] and **COMET**[4]. Both of these metrics are trained on human judgements and rely on large pre-trained models, which is not necessarily available for all languages and domains. While these do outperform more traditional techniques with regards to human annotator correlation, they are still limited by their need to collected training data.
 
-**SEScore2** is unique in its lack of reliance on human annotations for training while still providing a more accurate measure (with regards to agreement with human annotators) than older methods. 
+**SEScore2**[1] is unique in its lack of reliance on human annotations for training while still providing a more accurate measure (with regards to agreement with human annotators) than older methods. 
 
 ## Generating Synthetic Samples for Evaluation
 
@@ -40,7 +40,7 @@ What SEScore2 does is generate incorrect samples by sampling from the k nearest 
 
 ## Effectiveness of SEScore2
 
-The authors conduct several experiments to demonstrate the the superior performance and generalizability of the SEScore2 metric across various domains and text generation tasks. More specifically, they assess the metric by i) validating the trained SEScore2 checkpoint scores over a range of Natural Language Generation (NLG) tasks such as Machine Translation, Speech Translation, Data-to-Text, and Dialogue Generation; ii) testing over multiple non-English to English translations, iii) testing over two WMT domains – News and TED, and iv) performing a comprehensive set of evaluations to gather a more nuanced understanding of the metric’s performance over different dimensions. For the text generation tasks, the SEScore2 metric is compared with n-gram and distance-based metrics such as BLEU, ChrF and TER, unsupervised learned metrics such as PRISM, SEScore, BARTScore and BERTScore, and the best performing metrics learned in a supervised manner such as COMET and BLEURT (CITE ALL). Evaluation is done by computing how correlated the metric output scores are to human scores on the same input.
+The authors conduct several experiments to demonstrate the the superior performance and generalizability of the SEScore2 metric across various domains and text generation tasks. More specifically, they assess the metric by i) validating the trained SEScore2 checkpoint scores over a range of Natural Language Generation (NLG) tasks such as Machine Translation, Speech Translation, Data-to-Text, and Dialogue Generation; ii) testing over multiple non-English to English translations, iii) testing over two WMT domains – News and TED, and iv) performing a comprehensive set of evaluations to gather a more nuanced understanding of the metric’s performance over different dimensions. For the text generation tasks, the SEScore2 metric is compared with n-gram and distance-based metrics such as BLEU[2], ChrF[5] and TER[6], unsupervised learned metrics such as PRISM[7], SEScore[8], BARTScore[9] and BERTScore[10], and the best performing metrics learned in a supervised manner such as COMET[4] and BLEURT[3]. Evaluation is done by computing how correlated the metric output scores are to human scores on the same input.
 
 ![image2](./translation_evaluation_metrics_per_task.png)
 
@@ -77,11 +77,24 @@ The authors evaluate the impact of domain shift on the metric performance with a
 
 ![image3](./Multidimensional.png)
 
-SEScore2 excels in multi-dimensional evaluations of text generation. In benchmarks like WebNLG and BAGEL, it achieves the highest Kendall correlation in various aspects, notably fluency, text structure, naturalness, and overall quality, surpassing BLEURT significantly. This indicates that while SEScore2 provides an overall score, it is particularly effective in assessing quality and fluency aspects.
+SEScore2 excels in multi-dimensional evaluations of text generation. In benchmarks like WebNLG[11] and BAGEL, it achieves the highest Kendall correlation in various aspects, notably fluency, text structure, naturalness, and overall quality, surpassing BLEURT significantly. This indicates that while SEScore2 provides an overall score, it is particularly effective in assessing quality and fluency aspects.
+
+## Summary
+SEScore2 is an evaluation metric for text generation that offers a notable advancement by effectively utilizing synthetic data samples for assessment, bypassing the need for extensive human-labeled data. The metric has demonstrated effectiveness across diverse Natural Language Generation tasks, showing improved performance over traditional metrics and some state-of-the-art supervised approaches in multiple languages and domains. It particularly excels in evaluating fluency and quality. SEScore2's robustness is further exemplified through ablation studies, revealing the importance of retrieval-augmented synthesis and severity measures in its design. The paper positions SEScore2 as a reliable and comprehensive tool for the evaluation of text generation systems.
 
 ## References
 
 [1] Xu, W., Qian, X., Wang, M., Li, L., & Wang, W. Y. (2023, July). SESCORE2: Learning text generation evaluation via synthesizing realistic mistakes. In Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) (pp. 5166-5183).
+[2] Papineni, K., Roukos, S., Ward, T., & Zhu, W. J. (2002, July). Bleu: a method for automatic evaluation of machine translation. In Proceedings of the 40th annual meeting of the Association for Computational Linguistics (pp. 311-318).
+[3] Sellam, T., Das, D., & Parikh, A. P. (2020). BLEURT: Learning robust metrics for text generation. arXiv preprint arXiv:2004.04696.
+[4] Rei, R., Stewart, C., Farinha, A. C., & Lavie, A. (2020). COMET: A neural framework for MT evaluation. arXiv preprint arXiv:2009.09025.
+[5] Popović, M. (2015, September). chrF: character n-gram F-score for automatic MT evaluation. In Proceedings of the tenth workshop on statistical machine translation (pp. 392-395).
+[6] Snover, M., Dorr, B., Schwartz, R., Micciulla, L., & Makhoul, J. (2006). A study of translation edit rate with targeted human annotation. In Proceedings of the 7th Conference of the Association for Machine Translation in the Americas: Technical Papers (pp. 223-231).
+[7] Thompson, B., & Post, M. (2020). Automatic machine translation evaluation in many languages via zero-shot paraphrasing. arXiv preprint arXiv:2004.14564.
+[8] Xu, W., Tuan, Y., Lu, Y., Saxon, M., Li, L., & Wang, W. Y. (2022). Not all errors are equal: Learning text generation metrics using stratified error synthesis. arXiv preprint arXiv:2210.05035.
+[9] Yuan, W., Neubig, G., & Liu, P. (2021). Bartscore: Evaluating generated text as text generation. Advances in Neural Information Processing Systems, 34, 27263-27277.
+[10] Zhang, T., Kishore, V., Wu, F., Weinberger, K. Q., & Artzi, Y. (2019). Bertscore: Evaluating text generation with bert. arXiv preprint arXiv:1904.09675.
+[11] Gardent, C., Shimorina, A., Narayan, S., & Perez-Beltrachini, L. (2017, September). The WebNLG challenge: Generating text from RDF data. In Proceedings of the 10th International Conference on Natural Language Generation (pp. 124-133).
 
 
 
