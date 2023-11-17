@@ -77,7 +77,7 @@ The authors evaluate the impact of domain shift on the metric performance with a
 
 ![image3](./Multidimensional.png)
 
-SEScore2 excels in multi-dimensional evaluations of text generation. In benchmarks like WebNLG[11] and BAGEL, it achieves the highest Kendall correlation in various aspects, notably fluency, text structure, naturalness, and overall quality, surpassing BLEURT significantly. This indicates that while SEScore2 provides an overall score, it is particularly effective in assessing quality and fluency aspects.
+SEScore2 excels in multi-dimensional evaluations of text generation. In benchmarks like WebNLG[11] and BAGEL (see figure above), it achieves the highest Kendall correlation in various aspects, notably fluency, text structure, naturalness, and overall quality, surpassing BLEURT significantly. This indicates that while SEScore2 provides an overall score, it is particularly effective in assessing quality and fluency aspects.
 
 ## Summary
 SEScore2 is an evaluation metric for text generation that offers a notable advancement by effectively utilizing synthetic data samples for assessment, bypassing the need for extensive human-labeled data. The metric has demonstrated effectiveness across diverse Natural Language Generation tasks, showing improved performance over traditional metrics and some state-of-the-art supervised approaches in multiple languages and domains. It particularly excels in evaluating fluency and quality. SEScore2's robustness is further exemplified through ablation studies, revealing the importance of retrieval-augmented synthesis and severity measures in its design. The paper positions SEScore2 as a reliable and comprehensive tool for the evaluation of text generation systems.
