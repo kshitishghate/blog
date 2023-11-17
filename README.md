@@ -1,10 +1,12 @@
 ---
-home: true
-layout: Blog
-icon: home
-title: Blog Home
-heroImage: /logo.svg
-heroText: Blog about Machine Learning, Natural Language Processing, and Data Mining
-tagline: Sky is the limit
-# heroFullScreen: true
+title: SEScore2: Self-Supervised Evaluation Metric for Text Generation
+author:  Kshitish Ghate, Anjali Kantharuban
+date: 2023-11-16
+tag:
+ - Multilingual NLG
+ - Unsupervised Metric
+ - Retrieval Augmented Synthesis
+ - SEScore2
+category:
+ - Evaluation Metrics
 ---
