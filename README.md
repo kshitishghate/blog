@@ -36,3 +36,12 @@ Older techniques for generating synthetic **negative hypotheses**, or incorrect 
 
 ![image1](./problem_def.png)
 
+What SEScore2 does is generate incorrect samples by sampling from the k nearest neighbors of each token. The algorithm is careful to not always use the first nearest neighbor, since sometimes that returns a syntactically slightly different sentence that captures the same semantic meaning, which is still correct. Instead, a random sample is taken and the edit distance between the sample and the correct form is decomposed using an edit distance algorithm. Since most modern models make fewer than five errors per output, up to five random perturbation are made to the correct form, pulling from the mentioned decomposition mentioned. The resulting synthetic samples are contextually valid by have semantic or syntactic deviations from the reference.  
+
+## Effectiveness of SEScore2
+
+The authors conduct several experiments to demonstrate the the superior performance and generalizability of the SEScore2 metric across various domains and text generation tasks. More specifically, they assess the metric by i) validating the trained SEScore2 checkpoint scores over a range of Natural Language Generation (NLG) tasks such as Machine Translation, Speech Translation, Data-to-Text, and Dialogue Generation; ii) testing over multiple non-English to English translations, iii) testing over two WMT domains – News and TED, and iv) performing a comprehensive set of evaluations to gather a more nuanced understanding of the metric’s performance over different dimensions. For the text generation tasks, the SEScore2 metric is compared with n-gram and distance-based metrics such as BLEU, ChrF and TER, unsupervised learned metrics such as PRISM, SEScore, BARTScore and BERTScore, and the best performing metrics learned in a supervised manner such as COMET and BLEURT (CITE ALL). Evaluation is done by computing how correlated the metric output scores are to human scores on the same input.
+
+
+Overall Performance Comparison
+
